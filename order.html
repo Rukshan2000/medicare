@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmesy Medicine Order Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffccf9, #ffffff);
+        }
+
+        .ios-look {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .pink-theme {
+            background-color: #ff7eb9;
+        }
+    </style>
+</head>
+
+<body class="h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-4xl mx-auto p-8 ios-look shadow-2xl rounded-lg">
+        <h2 class="text-4xl font-bold text-pink-600 text-center mb-10">Farmesy Dashboard</h2>
+
+        <!-- View Available Medicines Button -->
+        <div class="mb-10 text-center">
+            <button
+                class="bg-pink-500 text-white px-8 py-4 rounded-full hover:bg-pink-600 focus:outline-none focus:ring-4 focus:ring-pink-300 transition duration-300 ease-in-out shadow-md">
+                View Available Medicines
+            </button>
+        </div>
+
+        <!-- Order Form Heading -->
+        <h3 class="text-2xl font-semibold text-pink-600 text-center mb-6">Order Your Medicine</h3>
+
+        <!-- Order Form -->
+        <form action="#" method="POST" enctype="multipart/form-data">
+
+            <!-- Name Field -->
+            <div class="mb-6">
+                <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
+                <input type="text" id="name" name="name" required
+                    class="mt-1 block w-full px-5 py-3 border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+            </div>
+
+            <!-- Contact Number Field -->
+            <div class="mb-6">
+                <label for="contact" class="block text-lg font-medium text-gray-700 mb-2">Contact Number</label>
+                <input type="text" id="contact" name="contact" required
+                    class="mt-1 block w-full px-5 py-3 border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+            </div>
+
+            <!-- Email Address Field -->
+            <div class="mb-6">
+                <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email Address</label>
+                <input type="email" id="email" name="email" required
+                    class="mt-1 block w-full px-5 py-3 border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+            </div>
+
+            <!-- Prescription Image Upload Field -->
+            <div class="mb-6">
+                <label for="prescription" class="block text-lg font-medium text-gray-700 mb-2">Upload Prescription</label>
+                <input type="file" id="prescription" name="prescription" accept="image/*" required
+                    class="mt-1 block w-full px-5 py-3 text-gray-700 bg-white border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+            </div>
+
+            <!-- Delivery Type Options -->
+            <div class="mb-6">
+                <span class="block text-lg font-medium text-gray-700 mb-2">Delivery Type</span>
+                <div class="mt-2 flex justify-around">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="delivery_type" value="pickup" class="form-radio text-pink-500" checked>
+                        <span class="ml-2 text-gray-700">Pick-up</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="delivery_type" value="deliver" class="form-radio text-pink-500">
+                        <span class="ml-2 text-gray-700">Deliver</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Delivery Address Fields (Hidden until Delivery Type "Deliver" is selected) -->
+            <div id="deliveryAddress" class="hidden">
+                <h3 class="text-md font-medium text-gray-700 mb-4">Delivery Address</h3>
+
+                <!-- Street Address -->
+                <div class="mb-6">
+                    <label for="street_address" class="block text-lg font-medium text-gray-700 mb-2">Street Address</label>
+                    <input type="text" id="street_address" name="street_address"
+                        class="mt-1 block w-full px-5 py-3 border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+                </div>
+
+                <!-- City Field -->
+                <div class="mb-6">
+                    <label for="city" class="block text-lg font-medium text-gray-700 mb-2">City</label>
+                    <input type="text" id="city" name="city"
+                        class="mt-1 block w-full px-5 py-3 border border-pink-300 rounded-full shadow-sm focus:outline-none focus:ring-4 focus:ring-pink-300">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-10">
+                <button type="submit"
+                    class="w-full bg-pink-500 text-white px-8 py-4 rounded-full hover:bg-pink-600 focus:outline-none focus:ring-4 focus:ring-pink-300 transition duration-300 ease-in-out shadow-md">
+                    Submit Order
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Show/Hide Delivery Address based on Delivery Type selection
+        const deliveryTypeInputs = document.querySelectorAll('input[name="delivery_type"]');
+        const deliveryAddress = document.getElementById('deliveryAddress');
+
+        deliveryTypeInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                if (input.value === 'deliver') {
+                    deliveryAddress.classList.remove('hidden');
+                } else {
+                    deliveryAddress.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
